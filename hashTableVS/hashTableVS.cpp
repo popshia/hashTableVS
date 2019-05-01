@@ -16,8 +16,8 @@
 using namespace std;
 
 typedef struct DataStruct {
-	unsigned char id[10];
-	unsigned char name[10];
+	char id[10];
+	char name[10];
 	unsigned char score1;
 	unsigned char score2;
 	unsigned char score3;
@@ -34,13 +34,24 @@ static FILE* openBin = false;
 static FILE* openTxt = false;
 
 class function1 {
-	DataStruct 
-	void ReadBin() {
-		;
-	} // ReadBin()
-
+	vector<DataStruct> dataBase;
+	DataStruct temp;
+public:
 	void ReadTxt() {
-		fscanf()
+		char slashN = '\0';
+		char buffer;
+     
+		do { // change to fread???
+			fscanf( openTxt, "%s%s%hhu%hhu%hhu%hhu%hhu%f%
+				c", &temp.id, &temp.name, &temp.score1, &temp.score2, &temp.score3, &temp.score4, &temp.score5, &temp.score6, &temp.average, &slashN );
+			dataBase.push_back( temp );
+		} while ( !feof( openTxt ) );
+
+		string outputName = "input" + FileNumber + ".bin";
+		openBin = fopen( outputName.c_str(), "wb+" );
+		for ( int i = 0; i < dataBase.size() ; i++ ) {
+			
+		}
 	}
 };
 
@@ -62,7 +73,7 @@ int main() {
 		cout << "**********************************************" << endl; // welcome message
 		cout << "*****               DS2ex03              *****" << endl;
 		cout << "***** 0 : Quit                           *****" << endl;
-		cout << "***** 1 : Read and analyze data          *****" << endl;
+		cout << "***** 1 : Read and convert data          *****" << endl;
 		cout << "***** 2 : Linear probing                 *****" << endl;
 		cout << "***** 3 : Double hash                    *****" << endl;
 		cout << "**********************************************" << endl;
@@ -85,7 +96,7 @@ int main() {
 			bool function1Confirm = false;
 			
 			do {
-				cout << "Please enter the file number you want to tranform to binary file or [0] to quit:" << endl;
+				cout << "Please enter the file number you want to convert to binary file or [0] to quit:" << endl;
 				cin >> FileNumber;
 
 				if ( FileNumber == "0" ) {
@@ -108,7 +119,7 @@ int main() {
 					else {
 						openTxt = fopen( txtFileName.c_str(), "r" );
 						if ( openTxt ) {
-							//One.ReadTxt();
+							One.ReadTxt();
 							function1Confirm = true;
 							continueOrNot = true;
 						} // txt file open sucessfully

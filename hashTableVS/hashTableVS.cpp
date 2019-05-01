@@ -15,11 +15,15 @@
 using namespace std;
 
 typedef struct DataStruct {
-	unsigned char id;
-	unsigned char name;
-	unsigned char score;
+	unsigned char id[10];
+	unsigned char name[10];
+	unsigned char score1;
+	unsigned char score2;
+	unsigned char score3;
+	unsigned char score4;
+	unsigned char score5;
+	unsigned char score6;
 	float average;
-
 } DataStruct;
 
 static ifstream input;
